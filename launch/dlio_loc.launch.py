@@ -52,23 +52,13 @@ def generate_launch_description():
         default_value='/livox/imu',
         description='IMU topic name'
     )
-    declare_base2imu_yaml_path_arg = DeclareLaunchArgument(
-        'base2imu_yaml_path',
-        default_value='',
-        description='Path to the base to IMU TF YAML file'
-    )
-    declare_base2livox_yaml_path_arg = DeclareLaunchArgument(
-        'base2livox_yaml_path',
-        default_value='',
-        description='Path to the base to Livox TF YAML file'
-    )
     
     rviz = LaunchConfiguration('rviz')
     map_path = LaunchConfiguration('map_path') # Set your map path here as a default
     pointcloud_topic = LaunchConfiguration('pointcloud_topic')
     imu_topic = LaunchConfiguration('imu_topic')
-    base2imu_yaml_path = LaunchConfiguration('base2imu_yaml_path')
-    base2livox_yaml_path = LaunchConfiguration('base2livox_yaml_path')
+    base2imu_yaml_path = 'base2imu_yaml_path'
+    base2livox_yaml_path = 'base2livox_yaml_path'
     
     with open(base2imu_yaml_path, 'r') as f:
         base2imu_data = yaml.safe_load(f)
@@ -131,8 +121,6 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        declare_base2imu_yaml_path_arg,
-        declare_base2livox_yaml_path_arg,
         declare_rviz_arg,
         rviz_node,
         declare_map_path_arg,
