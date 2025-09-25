@@ -37,7 +37,6 @@ def generate_launch_description():
         default_value='true',
         description='Launch RViz'
     )
-    # New argument for the map path
     declare_map_path_arg = DeclareLaunchArgument(
         'map_path',
         default_value='',
@@ -101,12 +100,6 @@ def generate_launch_description():
         }
     ]
 
-    # ==================================================================================
-    # Load parameters and Nodes
-    # ==================================================================================
-    dlio_yaml_path = PathJoinSubstitution([current_pkg, 'cfg', 'dlio.yaml'])
-    dlio_params_yaml_path = PathJoinSubstitution([current_pkg, 'cfg', 'params.yaml'])
-
     # DLIO Odometry Node for Localization
     dlio_odom_node = Node(
         package='direct_lidar_inertial_odometry',
@@ -134,10 +127,12 @@ def generate_launch_description():
         name='dlio_rviz',
         arguments=['-d', rviz_config_path],
         output='screen',
-        condition=IfCondition(LaunchConfiguration('rviz'))
+        condition=IfCondition(rviz)
     )
 
     return LaunchDescription([
+        declare_base2imu_yaml_path_arg,
+        declare_base2livox_yaml_path_arg,
         declare_rviz_arg,
         rviz_node,
         declare_map_path_arg,

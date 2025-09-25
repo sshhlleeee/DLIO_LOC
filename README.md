@@ -1,5 +1,5 @@
 # DLIO_LOC
-This repository contains the implementation enabling [DLIO](https://github.com/vectr-ucla/direct_lidar_inertial_odometry) to perform localization on a prior point cloud map. 
+This repository contains the implementation enabling [DLIO](https://github.com/vectr-ucla/direct_lidar_inertial_odometry) to perform localization on a prior point cloud map.  
 (🚧 Under construction, `/initialpose` set z as 0 🚧)
 
 ### Dependencies
